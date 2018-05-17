@@ -1,0 +1,50 @@
+{
+	"home": "Accueil",
+	"title": "Pokédex",
+	"auth": {
+		"login": "Connexion",
+		"register": "Inscription",
+		"logout": "Se déconnecter",
+		"username": "Pseudonyme",
+		"email": "Adresse e-mail",
+		"password": "Mot de passe",
+		"previous_password": "Ancien mot de passe",
+		"new_password": "Nouveau mot de passe",
+		"confirmation": "Confirmation"
+	},
+	"user": {
+		"profile": "Profil",
+		"rank": {
+			"0": "Utilisateur",
+			"1": "Modérateur",
+			"2": "Administrateur",
+			"${user.rank}": "${user.rank}"
+		}
+	},
+	"pokemon": {
+		"name": "Nom",
+		"picture": "Image",
+		"health": "Points de vie",
+		"attack": "Attaque",
+		"defense": "Défense",
+		"speed": "Vitesse",
+		"type": "Type",
+		"create": "Créer",
+		"add": "Pokémon - Ajouter",
+		"all": "Tous les pokémons"
+	},
+	"admin": {
+		"panel": "Administration",
+		"users": "Utilisateurs",
+		"admin": "Administration"
+	},
+	"error": {
+		"title": {
+			"404": "Page introuvable"
+		},
+		"message": {
+			"404": "Le page que vous recherchez est introuvable."
+		}
+	},
+	"login": "login"
+}

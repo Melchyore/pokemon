@@ -1,0 +1,7 @@
+<% if (flash.has('error')) { %>
+  <v-alert type="error" :value="true">
+    <%= flash.get('error') %>
+  </v-alert>
+<% } %>
+
+<login :routes="<%= JSON.stringify(routes) %>"></login>

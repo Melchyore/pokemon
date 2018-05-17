@@ -1,0 +1,31 @@
+<!--<v-breadcrumbs>
+  <v-icon slot="divider">chevron_right</v-icon>
+
+  <% _.forEach(route('admin.users').substr(1).split('/'), _route => { %>
+    <v-breadcrumbs-item :disabled="false"> <%= __(`admin.${_route}`) %> </v-breadcrumbs-item>
+  <% }) %>
+
+</v-breadcrumbs>-->
+<users :breadcrumbs="<%= JSON.stringify(breadcrumbs) %>" :users="<%= JSON.stringify(users) %>" />
+<!--
+<v-data-table
+  :items="users"
+  hide-actions
+  class="elevation-1"
+>
+  <template slot="items" slot-scope="props">
+    <td>{{ props.item.name }}</td>
+    <td class="text-xs-right">{{ props.item.email }}</td>
+    <td class="text-xs-right">{{ props.item.status }}</td>
+    <td class="text-xs-right">{{ props.item.pokemons.length }}</td>
+    <td class="justify-center layout px-0">
+      <v-btn icon class="mx-0" @click="">
+        <v-icon color="teal">edit</v-icon>
+      </v-btn>
+      <v-btn icon class="mx-0" @click="">
+        <v-icon color="pink">delete</v-icon>
+      </v-btn>
+    </td>
+  </template>
+</v-data-table>
+-->

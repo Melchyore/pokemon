@@ -1,0 +1,82 @@
+<v-form method="post" action="<%= route('pokemon.add') %>" v-model="valid" ref="form" lazy-validation>
+  <v-text-field
+    name="name"
+    label="<%= __('pokemon.name') %>"
+    v-model="pokemonName"
+    :rules="pokemonNameRules"
+    :counter="15"
+    required
+  ></v-text-field>
+
+  <v-text-field
+    name="picture"
+    label="<%= __('pokemon.picture') %>"
+    v-model="pokemonPicture"
+    :rules="pokemonPictureRules"
+    required
+  ></v-text-field>
+
+  <v-select
+    name="types"
+    label="<%= __('pokemon.type') %>"
+    v-model="pokemonTypes"
+    :items="pokemonTypesItems"
+    :rules="[v => !!v || 'Type is required']"
+    required
+    multiple
+    chips
+    deletable-chips
+  ></v-select>
+  <input name="types" type="hidden" v-model="pokemonTypes" />
+
+  <v-text-field
+    name="attack"
+    label="<%= __('pokemon.attack') %>"
+    v-model="pokemonAttack"
+    :rules="pokemonAttackRules"
+    required
+    type="number"
+    min=0
+    max=100
+  ></v-text-field>
+
+  <v-text-field
+    name="defense"
+    label="<%= __('pokemon.defense') %>"
+    v-model="pokemonDefense"
+    :rules="pokemonDefenseRules"
+    required
+    type="number"
+    min=0
+    max=100
+  ></v-text-field>
+
+  <v-text-field
+    name="health"
+    label="<%= __('pokemon.health') %>"
+    v-model="pokemonHealth"
+    :rules="pokemonHealthRules"
+    required
+    type="number"
+    min=0
+    max=100
+  ></v-text-field>
+
+  <v-text-field
+    name="speed"
+    label="<%= __('pokemon.speed') %>"
+    v-model="pokemonSpeed"
+    :rules="pokemonSpeedRules"
+    required
+    type="number"
+    min=0
+    max=100
+  ></v-text-field>
+
+  <v-btn
+    type="submit"
+    :disabled="!valid"
+  >
+    <%= __('pokemon.create') %>
+  </v-btn>
+</v-form>

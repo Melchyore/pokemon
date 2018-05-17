@@ -1,0 +1,47 @@
+<% if (flash.has('error')) { %>
+  <v-alert type="error" :value="true">
+    <%= flash.get('error') %>
+  </v-alert>
+<% } %>
+
+<v-form method="post" action="<%= route('auth.register') %>" v-model="valid" ref="form" lazy-validation>
+  <v-text-field
+  name="username"
+  label="<%= __('auth.username') %>"
+  v-model="username"
+  :rules="usernameRules"
+  :counter="10"
+  required
+  ></v-text-field>
+
+  <v-text-field
+    name="email"
+    label="<%= __('auth.email') %>"
+    v-model="email"
+    :rules="emailRules"
+    required
+  ></v-text-field>
+
+  <v-text-field
+    name="password"
+    label="<%= __('auth.password') %>"
+    v-model="password"
+    required
+    type="password"
+  ></v-text-field>
+
+  <v-text-field
+    name="confirmation"
+    label="<%= __('auth.confirmation') %>"
+    v-model="confirmation"
+    required
+    type="password"
+  ></v-text-field>
+
+  <v-btn
+    type="submit"
+    :disabled="!valid"
+  >
+    <%= __('auth.register') %>
+  </v-btn>
+</v-form>

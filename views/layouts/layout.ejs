@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token
+    meta name="csrf-token" content="<%= _csrf %>"> -->
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+    <!--STYLES END-->
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <title><%- title %></title>
+</head>
+<body>
+  <div id="app">
+    <v-app id="main">
+      <v-content>
+        <v-navigation-drawer
+          temporary
+          v-model="drawer"
+          dark
+          absolute
+        >
+          <v-list class="pa-1">
+            <v-list-tile>
+              <v-btn absolute right icon @click.stop="drawer = !drawer">
+                <v-icon>close</v-icon>
+              </v-btn>
+            </v-list-tile>
+            <v-layout row wrap align-center>
+                <v-flex class="text-xs-center">
+                    <v-avatar size="128"><img src="https://randomuser.me/api/portraits/men/85.jpg"></v-avatar>
+                    <br/>
+                    <a class="title" href="#">Test</a>
+                </v-flex>
+              </v-layout>
+
+          </v-list>
+          <v-list class="pt-0" dense>
+            <v-divider light></v-divider>
+            <!--<v-list-tile v-for="item in items" :key="item.title" @click="">
+              <v-list-tile-action>
+                <v-icon>@{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>@{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>-->
+          </v-list>
+        </v-navigation-drawer>
+        <% if (session.authenticated) { %>
+          <toolbar :routes="<%= JSON.stringify(sails.router.namedRoutes) %>" :user="<%= JSON.stringify(session.user) %>"></toolbar>
+        <% } else { %>
+          <toolbar :routes="<%= JSON.stringify(sails.router.namedRoutes) %>"></toolbar>
+        <% } %>
+        <!--<v-toolbar dark>
+          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar-title><%= __('title') %></v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn href="<%= route('home') %>" flat><%= __('home') %></v-btn>
+          </v-toolbar-items>
+            <v-btn href="<%= route('pokemons') %>" flat>Pokémons</v-btn>
+            <v-btn href="<%= route('pokemon.add') %>" flat><v-icon>add</v-icon> Ajouter</v-btn>
+            <v-toolbar-items>
+              <v-menu :attach="true" bottom left :nudge-bottom="64" min-width="200" z-index="8">
+                <v-btn type="button" slot="activator" flat>
+                  All
+                  <v-icon dark>arrow_drop_down</v-icon>
+                </v-btn>
+                <v-list light>
+                  <v-list-tile v-for="item in ['test', 'foo']" :key="item" @click="">
+                    <v-list-tile-title v-text="item"></v-list-tile-title>
+                  </v-list-tile>
+                </v-list>
+              </v-menu>
+            </v-toolbar-items>
+
+            <% if (!session.authenticated) { %>
+              <v-btn href="<%= route('auth.login') %>" flat><v-icon>person</v-icon> <%= __('auth.login') %></v-btn>
+              <v-btn href="<%= route('auth.register') %>" flat><v-icon>person_add</v-icon> <%= __('auth.register') %></v-btn>
+            <% } else { %>
+              <v-btn href="<%= route('user.show', session.user.username) %>" flat><v-icon>person</v-icon> <%= __('user.profile') %></v-btn>
+
+              <% if (session.user.rank === 2) { %>
+                <v-btn href="<%= route('admin') %>" flat><v-icon>build</v-icon> <%= __('admin.panel') %></v-btn>
+              <% } %>
+
+              <v-btn href="<%= route('user.logout') %>" flat><v-icon>exit_to_app</v-icon> <%= __('auth.logout') %></v-btn>
+            <% } %>
+          </v-toolbar-items>
+        </v-toolbar>-->
+        <v-container fluid>
+          <%- body %>
+        </v-container>
+      </v-content>
+      <v-footer height="auto" dark>
+        <v-card
+          flat
+          tile
+          class="white--text text-xs-center"
+          width="100%"
+        >
+          <v-card-text>
+            <v-btn
+              v-for="icon in footerIcons"
+              :key="icon"
+              icon
+              class="mx-3 white--text"
+            >
+              <v-icon size="24px">{{ icon }}</v-icon>
+            </v-btn>
+          </v-card-text>
+          <v-card-text class="white--text pt-0">
+            Footer text
+          </v-card-text>
+          <v-card-text class="white--text">
+            &copy;2018 — <strong>Pokédex</strong>
+          </v-card-text>
+        </v-card>
+      </v-footer>
+    </v-app>
+  </div>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="/js/bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jdenticon@2.1.0" async></script>
+  <script>
+    /*new Vue({
+      el: '#app',
+
+      data: () => ({
+        valid: false,
+        drawer: null,
+        items: [
+          { title: 'Home', icon: 'dashboard' },
+          { title: 'About', icon: 'question_answer' }
+        ],
+        mini: false,
+        right: null,
+        username: '',
+        usernameRules: [
+          v => !!v || 'Name is required',
+          v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+        ],
+        email: '',
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+        password: '',
+        confirmation: '',
+        newPassword: '',
+        previousPassword: '',
+        footerIcons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
+
+        pokemonName: '',
+        pokemonNameRules: [
+          v => !!v || 'Name is required',
+          v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+        ],
+        pokemonPicture: '',
+        pokemonPictureRules: [
+          v => !!v || 'Picture is required'
+        ],
+        pokemonHealth: 0,
+        pokemonHealthRules: [
+          v => !!v || 'Health is required',
+          v => v >= 0 && v <= 100 || 'Health must be between 0 and 100'
+        ],
+        pokemonAttack: 0,
+        pokemonAttackRules: [
+          v => !!v || 'Attack is required',
+          v => v >= 0 && v <= 100 || 'Attack must be between 0 and 100'
+        ],
+        pokemonDefense: 0,
+        pokemonDefenseRules: [
+          v => !!v || 'Defense is required',
+          v => v >= 0 && v <= 100 || 'Defense must be between 0 and 100'
+        ],
+        pokemonSpeed: 0,
+        pokemonSpeedRules: [
+          v => !!v || 'Speed is required',
+          v => v >= 0 && v <= 100 || 'Speed must be between 0 and 100'
+        ],
+        pokemonTypes: null,
+        pokemonTypesItems: [
+          'Aqua',
+          'Earth',
+          'Fire',
+          'Light',
+          'Dark',
+          'Poison'
+        ],
+        users: [
+          {
+            name: 'Foo',
+            email: 'bar@foo.com',
+            status: 0,
+            pokemons: [0, 2]
+          },
+          {
+            name: 'Bar',
+            email: 'foo@bar.com',
+            status: 1,
+            pokemons: []
+          }
+        ]
+      }),
+
+      methods: {
+      },
+    })*/
+  </script>
+</body>
+</html>
