@@ -47,9 +47,12 @@ export function login(req: any, res: any, next: Function): any {
         status: 1
       })
       .fetch()
-      .then(user => {
+      .then(async (user) => {
+        let _user = user[0]
+        _user.notifications = await Notification.find({ owner: user.id })
+
         req.session.authenticated = true
-        req.session.user = user[0]
+        req.session.user = _user
 
         return res.redirect('/home')
       }).catch(err => {

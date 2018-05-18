@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/bootstrap
  */
 
+let faker = require('faker')
+
 module.exports.bootstrap = async function(done) {
 
   // By convention, this is a good place to set up fake data during development.
@@ -34,6 +36,18 @@ module.exports.bootstrap = async function(done) {
   .then(user => console.log(user))
   .catch(err => {
     console.log(err.code)
+  })*/
+
+  /*let user = await User.findByName('Admin')
+
+  Notification.create({
+    type: 'info',
+    content: faker.lorem.sentence(),
+    target: user.id
+  })
+  .fetch()
+  .then(notification => {
+    console.log(notification)
   })*/
 
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.

@@ -30,13 +30,13 @@
       <v-menu :attach="true" bottom left :nudge-bottom="64" min-width="200" z-index="8">
         <v-btn type="button" slot="activator" flat @click="getNotifications()">
           <v-badge top color="red" v-model="show"> <!-- Show only if user.notifications.length > 0 -->
-            <span slot="badge">9</span>
+            <span slot="badge">{{ user.notifications.length }}</span>
             <v-icon>notifications</v-icon>
           </v-badge>
         </v-btn>
         <v-list light>
-          <v-list-tile v-for="item in ['test', 'foo']" :key="item" @click="">
-            <v-list-tile-title v-text="item"></v-list-tile-title>
+          <v-list-tile v-for="item in user.notifications" :key="item" @click="">
+            <v-list-tile-title v-text="item.content"></v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-menu>
@@ -121,6 +121,10 @@
       getNotifications() {
         // Send request
         this.show = false
+      },
+
+      readNotifications() {
+        // send ajax query using axios
       }
     }
   }
