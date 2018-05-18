@@ -34,7 +34,9 @@
     "@sailshq/eslint": "^4.19.3",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
     "css-loader": "^0.28.11",
+    "faker": "^4.1.0",
     "html-webpack-plugin": "^3.2.0",
     "vue-loader": "^15.0.10",
     "vue-style-loader": "^4.1.0",
@@ -45,11 +47,11 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "build": "webpack --config webpack.config.dev.js",
-    "dev": "webpack-dev-server --config webpack.config.dev.js"
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
+    "test": "mocha test/lifecycle.test.js test/integration/**/*.test.js"
   },
   "main": "app.js",
   "repository": {

@@ -18,9 +18,9 @@ module.exports = {
       maxLength: 1000,
       required: true
     },
+
     target: {
-      type: 'number',
-      required: true
+      model: 'user'
     }
   },
 
